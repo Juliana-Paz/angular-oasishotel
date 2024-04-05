@@ -1,0 +1,38 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput formControlName="nome" placeholder="Nome">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="valor" placeholder="Valor" type="number">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="descricao" placeholder="Descrição">
+  </mat-form-field>
+
+
+  <!-- Campo para TipoQuarto -->
+  <div formArrayName="tipoQuarto">
+    <div *ngFor="let tipoQuarto of tipoQuarto.controls; let i=index" [formGroupName]="i">
+      <mat-form-field>
+        <input matInput formControlName="nome" placeholder="Tipo de Quarto">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="addTipoQuarto()">Adicionar Tipo de Quarto</button>
+
+  <!-- Campo para Amenidades -->
+  <div formArrayName="amenidades">
+    <div *ngFor="let amenidade of amenidades.controls; let i=index" [formGroupName]="i">
+      <mat-form-field>
+        <input matInput formControlName="nome" placeholder="Amenidade">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="addAmenidade()">Adicionar Amenidade</button>
+
+  <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+</form>

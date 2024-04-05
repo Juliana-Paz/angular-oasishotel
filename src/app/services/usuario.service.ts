@@ -62,4 +62,11 @@ export class UsuarioService {
     return this.http.put<Usuario>(`${this.apiUrl}/${usuario.id}`, request);
   }
 
+  count(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/count`);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

@@ -90,7 +90,8 @@ export class UsuarioFormComponent implements OnInit {
           this.router.navigateByUrl('/usuarios/list');
         }, (err) => {
           console.log('Erro ao Atualizar: ' + JSON.stringify(err));
-        });
+        }
+        );
       } else {
         this.usuarioService.create(usuario).subscribe((res) => {
           this.router.navigateByUrl('/usuarios/list');

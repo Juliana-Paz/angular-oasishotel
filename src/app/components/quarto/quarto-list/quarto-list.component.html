@@ -1,0 +1,69 @@
+<div>
+    <table mat-table [dataSource]="quartos" class="mat-elevation-z8">
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let quarto">{{quarto.id}}</td>
+        </ng-container>
+
+        <!-- Nome Column -->
+        <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef>Nome</th>
+            <td mat-cell *matCellDef="let quarto">{{quarto.nome}}</td>
+        </ng-container>
+
+        <!-- Descrição Column -->
+        <ng-container matColumnDef="descricao">
+            <th mat-header-cell *matHeaderCellDef>Descrição</th>
+            <td mat-cell *matCellDef="let quarto">{{quarto.descricao}}</td>
+        </ng-container>
+
+        <!-- Valor Column -->
+        <ng-container matColumnDef="valor">
+            <th mat-header-cell *matHeaderCellDef>Valor</th>
+            <td mat-cell *matCellDef="let quarto">{{quarto.valor}}</td>
+        </ng-container>
+
+        <!-- Disponível Column -->
+        <ng-container matColumnDef="isDisponivel">
+            <th mat-header-cell *matHeaderCellDef>Disponível</th>
+            <td mat-cell *matCellDef="let quarto">{{quarto.isDisponivel ? 'Sim' : 'Não'}}</td>
+        </ng-container>
+
+        <!-- Tipo de Quarto Column -->
+        <ng-container matColumnDef="tipoQuarto">
+            <th mat-header-cell *matHeaderCellDef>Tipo de Quarto</th>
+            <td mat-cell *matCellDef="let element">
+                <div *ngFor="let quarto of element.tipoQuarto">{{quarto.nome}}</div>
+            </td>
+        </ng-container>
+
+        <!-- Amenidades Column -->
+        <ng-container matColumnDef="amenidades">
+            <th mat-header-cell *matHeaderCellDef>Amenidades</th>
+            <td mat-cell *matCellDef="let element">
+                <div *ngFor="let amenidade of element.amenidade">{{amenidade.nome}}</div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acoes">
+            <th mat-header-cell *matHeaderCellDef>Ações</th>
+            <td mat-cell *matCellDef="let quarto">
+                <button mat-icon-button color="primary" routerLink="/quartos/edit/{{quarto.id}}">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteQuarto(quarto.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Adicionando o componente de paginação -->
+    <mat-paginator [length]="totalQuartos" [pageSize]="pageSize" [pageIndex]="page" [pageSizeOptions]="[2, 4, 8, 16]"
+        (page)="handlePage($event)">
+    </mat-paginator>
+</div>
