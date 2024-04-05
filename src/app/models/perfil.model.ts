@@ -1,4 +1,4 @@
-export enum Perfil {
-    CLIENTE = 1,
-    FUNCIONARIO = 2
+export class Perfil {
+   id!: number;
+   label!: string;
 }

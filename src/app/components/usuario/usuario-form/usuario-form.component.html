@@ -1,0 +1,50 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <input matInput formControlName="nome" placeholder="Nome">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput formControlName="sobrenome" placeholder="Sobrenome">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput formControlName="senha" placeholder="Senha" type="password">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput formControlName="email" placeholder="E-mail" type="text">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput formControlName="dataNascimento" placeholder="Data de Nascimento" type="date">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput formControlName="endereco" placeholder="Endereço">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput formControlName="cpf" placeholder="CPF">
+    </mat-form-field>
+
+    <div formArrayName="contatos">
+        <div *ngFor="let contato of contatos.controls; let i=index" [formGroupName]="i">
+            <mat-form-field>
+                <input matInput formControlName="telefone" placeholder="Telefone">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <mat-form-field>
+        <mat-label>Perfil</mat-label>
+        <mat-select formControlName="perfil">
+            <mat-option *ngFor="let perfil of perfis" [value]="perfil">
+                {{ perfil.label }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-button (click)="addContato()">Adicionar Contato</button>
+
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+</form>
